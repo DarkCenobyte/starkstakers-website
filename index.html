@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste dynamique</title>
+    <style>
+        /* Global styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            overflow: hidden; /* Avoid scrolling for animated background */
+        }
+
+        /* Background animation */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Page container */
+        .container {
+            position: relative;
+            max-width: 1200px;
+            margin: 50px auto;
+            background-color: rgba(20, 20, 20, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Logo */
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #222;
+            color: #f0f0f0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #333;
+        }
+
+        tr:hover {
+            background-color: #444;
+        }
+
+        td {
+            color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background animation -->
+    <div id="particles-js"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="https://via.placeholder.com/800x150?text=Votre+Logo+Ici" alt="Logo">
+        </div>
+
+        <!-- Table -->
+        <table id="dynamic-table">
+            <thead>
+                <tr>
+                    <th>Colonne 1</th>
+                    <th>Colonne 2</th>
+                    <th>Colonne 3</th>
+                    <th>Colonne 4</th>
+                    <th>Colonne 5</th>
+                    <th>Colonne 6</th>
+                    <th>Colonne 7</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically injected here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        /* Particles.js configuration */
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 50,
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#ffffff" },
+                "shape": {
+                    "type": "line",
+                    "stroke": { "width": 0, "color": "#000000" }
+                },
+                "opacity": {
+                    "value": 0.3,
+                    "random": false,
+                    "anim": { "enable": false }
+                },
+                "size": {
+                    "value": 2,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": { "enable": false }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "repulse": { "distance": 50, "duration": 0.4 },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+
+        /* Dynamic table population */
+        const data = [
+            { col1: "A1", col2: "B1", col3: "C1", col4: "D1", col5: "E1", col6: "F1", col7: "G1" },
+            { col1: "A2", col2: "B2", col3: "C2", col4: "D2", col5: "E2", col6: "F2", col7: "G2" },
+            { col1: "A3", col2: "B3", col3: "C3", col4: "D3", col5: "E3", col6: "F3", col7: "G3" },
+        ];
+
+        const tableBody = document.querySelector("#dynamic-table tbody");
+
+        function populateTable(data) {
+            data.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.col1}</td>
+                    <td>${item.col2}</td>
+                    <td>${item.col3}</td>
+                    <td>${item.col4}</td>
+                    <td>${item.col5}</td>
+                    <td>${item.col6}</td>
+                    <td>${item.col7}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Populate table with initial data
+        populateTable(data);
+    </script>
+</body>
+
+</html>
